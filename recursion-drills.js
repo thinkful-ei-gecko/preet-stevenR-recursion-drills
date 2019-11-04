@@ -98,3 +98,24 @@ console.log(factorial(5));
 
 
 //Q8 Maze
+
+
+let mySmallMaze = [
+    [" ", " ", " "],
+    [" ", "*", " "], 
+    [" ", " ", "e"]];
+
+let maze = [
+  [" ", " ", " ", "*", " ", " ", " "],
+  ["*", "*", " ", "*", " ", "*", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", "*", "*", "*", "*", "*", " "],
+  [" ", " ", " ", " ", " ", " ", "e"]
+];
+const findWayOut = function(maze, column, row){
+    if(maze[column][row] ==='e'){
+        return '';
+    }
+    
+}
+
