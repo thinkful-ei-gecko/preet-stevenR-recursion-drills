@@ -28,3 +28,11 @@ console.log(powerCalculator(10,-2));
 
 
 //Q3: Reverse string
+
+const reverseString = function(str){
+    if (!str.length){
+        return "";
+    }
+    return reverseString(str.substr(1))+str.charAt(0);
+}
+console.log(reverseString("Jim"));
