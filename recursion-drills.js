@@ -99,57 +99,57 @@
 
 // //Q8,9 Maze
 
-// let maze = [
-//   [" ", " ", " ", "*", " ", " ", " "],
-//   ["*", "*", " ", "*", " ", "*", " "],
-//   [" ", " ", " ", " ", " ", " ", " "],
-//   [" ", "*", "*", "*", "*", "*", " "],
-//   [" ", " ", " ", " ", " ", " ", "e"]
-// ];
-// const findWayOut = function(maze, position=0, column=0, row=0, path=[], direction='Start'){
-//     //base case - should equal to position in the nested array that returns 'e'
-//     if(row >= maze.length || column >= maze[0].length){
-//         return; 
-//     }   
-//     if(row < 0 || column < 0){
-//         return; 
-//     }
-//     path[position] = direction;
-//     position++;
-//     if(maze[row][column] === 'e'){
-//         console.log('Found path = ', path)
-//         return;
-//     }
-//     //recursion
-//     if(maze[row][column] === ' '){
-//         maze[row][column] = 'Start';
-//         findWayOut(maze, position, column-1, row, path, 'L');
-//         findWayOut(maze, position, column+1, row, path, 'R');
-//         findWayOut(maze, position, column, row-1, path, 'U');
-//         findWayOut(maze, position, column, row+1, path, 'D');
-//         maze[row][column] = ' ';
-//     }
-//     position--;
-// }
-// console.log(findWayOut(maze)); 
+let maze = [
+  [" ", " ", " ", "*", " ", " ", " "],
+  ["*", "*", " ", "*", " ", "*", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", "*", "*", "*", "*", "*", " "],
+  [" ", " ", " ", " ", " ", " ", "e"]
+];
+const findWayOut = function(maze, position=0, column=0, row=0, path=[], direction='Start'){
+    //base case - should equal to position in the nested array that returns 'e'
+    if(row >= maze.length || column >= maze[0].length){
+        return; 
+    }   
+    if(row < 0 || column < 0){
+        return; 
+    }
+    path[position] = direction;
+    position++;
+    if(maze[row][column] === 'e'){
+        console.log('Found path = ', path.join(''))
+        return;
+    }
+    //recursion
+    if(maze[row][column] === ' '){
+        maze[row][column] = 'Start';
+        findWayOut(maze, position, column-1, row, path, 'L');
+        findWayOut(maze, position, column+1, row, path, 'R');
+        findWayOut(maze, position, column, row-1, path, 'U');
+        findWayOut(maze, position, column, row+1, path, 'D');
+        maze[row][column] = ' ';
+    }
+    position--;
+}
+console.log(findWayOut(maze)); 
 
 //Q10 Anagrams
-const anagramList = function(str){
-    let wordList = [];
+const anagramList = function(wordList, pref, str){
+    // let wordList = [];
     //basecase
-    if(wordList.length === 1){
-        wordList.push(str[0]);
+    if(str.length === 1){
+        wordList.push(pref + str);
         return wordList;
     }
     //recursive
     for(let i=0; i<str.length; i++){
         const prefix = str[i];
         const restOfWord = str.substring(0, i) + str.substring(i + 1);
-        let anagrams = anagramList(restOfWord);
-        for(let j=0; j<anagrams.length; j++){
-            wordList.push(prefix + anagrams[j]);
-        }
+        let anagrams = anagramList(wordList, pref+prefix, restOfWord);
+        // for(let j=0; j<anagrams.length; j++){
+        //     wordList.push(prefix + anagrams[j]);
+        // }
     }
     return wordList;
 };
-console.log(anagramList('east'));
+console.log(anagramList([], '','east').join('\n'));
